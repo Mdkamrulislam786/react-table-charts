@@ -1,0 +1,63 @@
+.adminDashboard__sidebarLeft {
+  background-color: #282a3c;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem 3rem 1rem;
+}
+
+.adminDashboard__sidebarRight {
+  background-color: #f4f7fd;
+  height: 100vh;
+}
+.adminDashboard__navwrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.adminDashboard__navitem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  width: 100%;
+  margin-left: 1rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.adminDashboard__navitem:hover,
+.adminDashboard__navitem:focus-within {
+  background-color: #fff;
+  color: #000;
+}
+
+.adminDashboard__sidebarLeftBottom {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.adminDashboard__sidebarLeft_logout {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: capitalize;
+}
