@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Box, Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+// import * as UserData from "../../MOCK_DATA.json";
 
 function createData(
   userID,
@@ -60,6 +61,42 @@ const rows = [
 
 export default function BasicTable() {
   const classes = useStyles();
+  const columns = useMemo(
+    () => [
+      {
+        Header: "User ID",
+        accessor: "userid", // accessor is the "key" in the data
+      },
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      {
+        Header: "Ongoing Projects",
+        accessor: "projecta",
+      },
+      {
+        Header: "Profile Created",
+        accessor: "created",
+      },
+      {
+        Header: "Total Value Generated",
+        accessor: "value",
+      },
+      {
+        Header: "Account Status",
+        accessor: "active",
+      },
+      {
+        Header: "Actions",
+        accessor: "actions",
+      },
+    ],
+    []
+  );
+
+  console.log("columns", columns);
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
