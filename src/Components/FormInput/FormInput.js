@@ -1,6 +1,14 @@
 import styles from "./FormInput.module.css";
 
-const FormInput = ({ icon, type, placeholder, label, bgc }) => {
+const FormInput = ({
+  icon,
+  type,
+  placeholder,
+  label,
+  bgc,
+  filter,
+  setFilter,
+}) => {
   return (
     <div className={styles.formInput}>
       <label>{label}</label>
@@ -9,7 +17,12 @@ const FormInput = ({ icon, type, placeholder, label, bgc }) => {
         className={styles.input}
       >
         {icon}
-        <input type={type} placeholder={placeholder} />
+        <input
+          type={type}
+          value={filter || ""}
+          onChange={({ target }) => setFilter(target.value)}
+          placeholder={placeholder}
+        />
       </div>
     </div>
   );
