@@ -6,8 +6,9 @@ const FormInput = ({
   placeholder,
   label,
   bgc,
-  filter,
-  setFilter,
+  value,
+  name,
+  onChange,
 }) => {
   return (
     <div className={styles.formInput}>
@@ -19,8 +20,9 @@ const FormInput = ({
         {icon}
         <input
           type={type}
-          value={filter || ""}
-          onChange={({ target }) => setFilter(target.value)}
+          value={value || ""}
+          name={name}
+          onChange={onChange}
           placeholder={placeholder}
         />
       </div>

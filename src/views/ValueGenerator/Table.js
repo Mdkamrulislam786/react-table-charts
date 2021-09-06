@@ -20,7 +20,18 @@ export default function BasicTable(props) {
     prepareRow,
     footerGroups,
   } = props.tableInstance;
+  const [open, setOpen] = React.useState(false);
+
   const classes = useStyles();
+
+  //MOdal
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -51,6 +62,9 @@ export default function BasicTable(props) {
                     ) : (
                       ""
                     )}
+                    {/* <div>
+                      {column.canFilter ? column.render("Filter") : null}
+                    </div>{" "} */}
                   </Box>
                 </TableCell>
               ))}
@@ -112,7 +126,7 @@ const useStyles = makeStyles({
     backgroundColor: "#F2F2F2",
   },
   regularData: {
-    fontSize: "12px",
+    fontSize: "13px",
   },
   headerWidth: {
     display: "flex",

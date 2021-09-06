@@ -11,7 +11,7 @@ export const columnData = () => {
       accessor: "id",
       Cell: ({ value }) => (
         <Typography variant="body2" color="textSecondary">
-          {value}
+          {value.split("-").join("")}
         </Typography>
       ),
     },

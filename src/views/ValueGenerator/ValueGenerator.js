@@ -3,12 +3,23 @@ import { Box, Button, Grid, makeStyles, Typography } from "@material-ui/core";
 import BasicTable from "./Table";
 import FormInput from "../../Components/FormInput/FormInput";
 import { SearchOutlined } from "@material-ui/icons";
-import { useTable, useSortBy, useGlobalFilter } from "react-table";
+import {
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  useFilters,
+  useAsyncDebounce,
+  usePagination,
+} from "react-table";
 import UserData from "../../MOCK_DATA.json";
 import { columnData } from "./columns";
 
 const ValueGenerator = () => {
   const [resultStatus, setResultStatus] = useState("All");
+  const [tableFilters, setTableFilters] = useState({
+    name: null,
+    id: null,
+  });
   const classes = useStyles();
 
   const data = useMemo(() => [...UserData], []);
@@ -18,12 +29,26 @@ const ValueGenerator = () => {
       columns,
       data,
     },
+    useFilters,
     useGlobalFilter,
-    useSortBy
+    useSortBy,
+    usePagination
   );
 
-  const { state, setGlobalFilter } = tableInstance;
+  const { state, setGlobalFilter, setFilter } = tableInstance;
   const { globalFilter } = state;
+
+  const handleFilterChange = (e) => {
+    const value = e.target.value || undefined;
+    const name = e.target.name || undefined;
+
+    setFilter(name, value);
+    setTableFilters({
+      ...tableFilters,
+      [name]: value,
+    });
+    setResultStatus(value?.length > 0 ? name : "All");
+  };
 
   return (
     <>
@@ -36,18 +61,29 @@ const ValueGenerator = () => {
               type="text"
               placeholder="Search by any parameter"
               bgc="#f8f8f8"
-              filter={globalFilter}
-              setFilter={setGlobalFilter}
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
             />
           </Grid>
           <Grid item>
-            <FormInput type="text" placeholder="Name" bgc="#f8f8f8" />
+            <FormInput
+              type="text"
+              placeholder="Name"
+              value={tableFilters.name}
+              name="name"
+              onChange={handleFilterChange}
+              bgc="#f8f8f8"
+            />
           </Grid>
           <Grid item>
-            <FormInput type="number" placeholder="User ID" bgc="#f8f8f8" />
-          </Grid>
-          <Grid item>
-            <FormInput type="number" placeholder="Task ID" bgc="#f8f8f8" />
+            <FormInput
+              type="number"
+              placeholder="User ID"
+              bgc="#f8f8f8"
+              value={tableFilters.id}
+              name="id"
+              onChange={handleFilterChange}
+            />
           </Grid>
         </Grid>
       </Box>
