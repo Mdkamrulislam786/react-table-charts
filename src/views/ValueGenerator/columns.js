@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { format, parseISO } from "date-fns";
-import { Link } from "react-router-dom";
+import TransitionsModal from "../../Components/Modal/Modal";
 
 export const columnData = () => {
   return [
@@ -82,7 +82,7 @@ export const columnData = () => {
       Header: "Actions",
       Footer: "Actions",
       accessor: "actions",
-      Cell: ({ value }) => (
+      Cell: ({ row }) => (
         <Box className="flex-between w-100 ">
           <Button
             color="inherit"
@@ -96,26 +96,19 @@ export const columnData = () => {
               "&:hover": { backgroundColor: "#EF621C" },
             }}
             size="small"
+            onClick={() => alert("Are you sure you want to ban this user?")}
           >
             Ban User
           </Button>
-          <Link to="/charts">
-            <Button
-              color="inherit"
-              variant="contained"
-              style={{
-                backgroundColor: "#155475",
-                borderRadius: "30px",
-                color: "#fff",
-                fontSize: "12px",
-                width: "80px",
-                "&:hover": { backgroundColor: "#155475" },
-              }}
-              size="small"
-            >
-              View Info
-            </Button>
-          </Link>
+
+          <TransitionsModal btnText="View Info">
+            <Typography gutterBottom variant="h6" color="textSecondary">
+              {row.original.name} Details :
+            </Typography>
+            <pre>
+              <code>{JSON.stringify(row.original, null, 2)}</code>
+            </pre>
+          </TransitionsModal>
         </Box>
       ),
     },
