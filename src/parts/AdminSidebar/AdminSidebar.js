@@ -17,13 +17,13 @@ const adminNavs = [
   },
   {
     logo: <RecentActorsIcon className="mr-5" fontSize="small" />,
-    text: "User Control",
+    text: "Line chart",
     link: "/charts",
   },
   {
     logo: <PersonIcon className="mr-5" fontSize="small" />,
-    text: "Value Generator",
-    link: "/charts",
+    text: "Bar chart",
+    link: "/barchart",
   },
   {
     logo: <PersonOutlineIcon className="mr-5" fontSize="small" />,
